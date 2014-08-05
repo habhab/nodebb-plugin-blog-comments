@@ -170,7 +170,7 @@
 	};
 
 	function reloadComments() {
-		XHR.open('GET', nodeBBURL + '/comments/get/' + postI + '/' + pagination, true);
+		XHR.open('GET', nodeBBURL + '/comments/get/' + videoId + '/' + pagination, true);
 		XHR.withCredentials = true;
 		XHR.send();
 	}
