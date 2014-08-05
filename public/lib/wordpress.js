@@ -137,29 +137,29 @@
 			} else {
 				if (data.isAdmin) {
 					var adminXHR = newXHR();
-					adminXHR.open('GET', '/api/get_post/?post_id=' + articleID);
+					adminXHR.open('GET', '/api/' + endpoint + '/' + postID);
 					adminXHR.onload = function() {
 						if (adminXHR.status >= 200 && adminXHR.status < 400) {
-							var articleData = JSON.parse(adminXHR.responseText.toString()).post,
-								translator = document.createElement('span'),
-								wptags = articleData.tags,
-								tags = [];
+							var articleData = JSON.parse(adminXHR.responseText.toString()).post;
+//								translator = document.createElement('span'),
+//								wptags = articleData.tags,
+//								tags = [];
 
-							translator.innerHTML = articleData.excerpt;
+//							translator.innerHTML = articleData.excerpt;
 
-							var markdown = translator.firstChild.innerHTML + '\n\n**Click [here]('+articlePath+') to see the full blog post**';
+							var markdown = 'Click [here]('+articlePath+') to see the full post**';
 
-							for (var tag in wptags) {
-								if (wptags.hasOwnProperty(tag)) {
-									tags.push(wptags[tag].title);
-								}
-							}
+//							for (var tag in wptags) {
+//								if (wptags.hasOwnProperty(tag)) {
+//									tags.push(wptags[tag].title);
+//								}
+//							}
 
 							document.getElementById('nodebb-content-markdown').value = markdown;
-							document.getElementById('nodebb-content-title').value = articleData.title_plain;
-							document.getElementById('nodebb-content-tags').value = JSON.stringify(tags);
+							document.getElementById('nodebb-content-title').value = articleData.title;
+							document.getElementById('nodebb-content-tags').value = [];
 						} else {
-							console.warn('Unable to access API. Please install the JSON API plugin located at: http://wordpress.org/plugins/json-api');
+							console.warn('Unable to access post API.');
 						}
 					}
 

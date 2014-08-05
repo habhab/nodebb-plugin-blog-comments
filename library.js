@@ -130,6 +130,7 @@
 		}, function(err, userStatus) {
 			if (!userStatus.isAdmin && !userStatus.isPublisher) {
 				res.json({error: "Only Administrators or members of the publishers group can publish articles"});
+                return;
 			}
 
 			topics.post({

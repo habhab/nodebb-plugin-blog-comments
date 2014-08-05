@@ -51,8 +51,9 @@ if ( post_password_required() )
 
 <a id="nodebb/comments"></a>
 <script type="text/javascript">
-var nodeBBURL = 'http://your.nodebb.com',
-	articleID = '<?php echo the_ID(); ?>';
+var nodeBBURL = 'http://localhost:4567',
+    endpoint = 'video',
+	postID = '213'; // TODO get id from post
 
 (function() {
 var nbb = document.createElement('script'); nbb.type = 'text/javascript'; nbb.async = true;
