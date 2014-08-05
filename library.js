@@ -128,7 +128,7 @@
 				groups.isMember(uid, 'publishers', next);
 			}
 		}, function(err, userStatus) {
-			if (!userStatus.isAdmin && !userStatus.isPublisher) {
+			if (!userStatus.isAdministrator && !userStatus.isPublisher) {
 				res.json({error: "Only Administrators or members of the publishers group can publish articles"});
                 return;
 			}
