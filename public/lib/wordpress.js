@@ -55,7 +55,7 @@
 
 			data.relative_path = nodeBBURL;
 			data.redirect_url = articlePath;
-			data.article_id = articleID;
+			data.article_id = videoId;
 			data.pagination = pagination;
 			data.postCount = parseInt(data.postCount, 10);
 
@@ -137,10 +137,10 @@
 			} else {
 				if (data.isAdmin) {
 					var adminXHR = newXHR();
-					adminXHR.open('GET', '/api/' + endpoint + '/' + postID);
+					adminXHR.open('GET', '/api/' + endpoint + '/' + videoId);
 					adminXHR.onload = function() {
 						if (adminXHR.status >= 200 && adminXHR.status < 400) {
-							var articleData = JSON.parse(adminXHR.responseText.toString()).post;
+							var articleData = JSON.parse(adminXHR.responseText.toString()).video;
 //								translator = document.createElement('span'),
 //								wptags = articleData.tags,
 //								tags = [];
@@ -156,7 +156,7 @@
 //							}
 
 							document.getElementById('nodebb-content-markdown').value = markdown;
-							document.getElementById('nodebb-content-title').value = articleData.title;
+							document.getElementById('nodebb-content-title').value = articleData.name;
 							document.getElementById('nodebb-content-tags').value = [];
 						} else {
 							console.warn('Unable to access post API.');
@@ -170,7 +170,7 @@
 	};
 
 	function reloadComments() {
-		XHR.open('GET', nodeBBURL + '/comments/get/' + articleID + '/' + pagination, true);
+		XHR.open('GET', nodeBBURL + '/comments/get/' + postI + '/' + pagination, true);
 		XHR.withCredentials = true;
 		XHR.send();
 	}
